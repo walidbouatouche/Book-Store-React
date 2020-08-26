@@ -1,25 +1,20 @@
-const { DataTypes } = require('sequelize');
+const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
-module.exports = model;
+const userSchema = mongoose.Schema({
 
-function model(sequelize) {
-    const attributes = {
-        firstName: { type: DataTypes.STRING, allowNull: false },
-        lastName: { type: DataTypes.STRING, allowNull: false },
-        username: { type: DataTypes.STRING, allowNull: false },
-        hash: { type: DataTypes.STRING, allowNull: false }
-    };
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    fullName: { type: String, required: true },
+    dateOfBirth: { type: String, required: true },
+    adresse: { type: String, required: true },
+    phone: { type: String, required: true },
+    imgUrl: { type: String, required: true },
+    description: { type: String, required: true },
+    createdAt: { type: String, required: true },
+    updatedAt: { type: String, required: true }
+});
 
-    const options = {
-        defaultScope: {
-            // exclude hash by default
-            attributes: { exclude: ['hash'] }
-        },
-        scopes: {
-            // include hash with this scope
-            withHash: { attributes: {}, }
-        }
-    };
+userSchema.plugin(uniqueValidator);
 
-    return sequelize.define('User', attributes, options);
-}
+module.exports = mongoose.model('User', userSchema);
