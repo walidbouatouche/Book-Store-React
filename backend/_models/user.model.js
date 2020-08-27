@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
     adresse: { type: String, required: true },
     phone: { type: String, required: true },
     imgUrl: { type: String, required: true },
-    description: { type: String, required: true },
+    aubouteMe: { type: String, required: true },
+    role: { type: String, required: true },
     createdAt: { type: String, required: true },
     updatedAt: { type: String, required: true }
 });

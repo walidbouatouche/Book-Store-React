@@ -4,7 +4,7 @@ module.exports = db = {};
 initialize();
 
 async function initialize() {
-    await mongoose.connect('mongodb+srv://*****************',
+    await mongoose.connect('mongodb+srv://*********************',
         {
             useNewUrlParser: true,
             useUnifiedTopology: true
