@@ -9,8 +9,9 @@ const bookSchema = mongoose.Schema({
     author: { type: String, required: true },
     publishedAt: { type: String, required: true },
     addBy: { type: String, required: true },
-    createdAt: { type: String, required: true },
     rate: { type: Number, required: true },
+    AmazonLink: { type: String, required: true },
+    createdAt: { type: String, required: true },
     updatedAt: { type: String, required: true }
 });
 
