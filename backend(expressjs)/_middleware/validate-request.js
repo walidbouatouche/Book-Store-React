@@ -1,5 +1,5 @@
 module.exports = validateRequest;
-const response = require('../_helpers/reponsereponse')
+const response = require('../_helpers/response')
 function validateRequest(res, req, next, schema) {
 
     try {

@@ -8,6 +8,7 @@ const bookSchema = mongoose.Schema({
     category: { type: String, required: true },
     author: { type: String, required: true },
     publishedAt: { type: String, required: true },
+    imgLink: { type: String, required: true },
     addBy: { type: String, required: true },
     amazonLink: { type: String, required: true },
     createdAt: { type: String, required: true },

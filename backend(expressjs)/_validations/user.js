@@ -1,4 +1,3 @@
-const response = require('../_helpers/reponse')
 const validateRequest = require('../_middleware/validate-request')
 exports.signupValidation = (req, res, next) => {
     try {
