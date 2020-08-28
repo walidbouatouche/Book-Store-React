@@ -1,13 +1,13 @@
 const User = require('../_models/user.model');
 const bcrypt = require('bcryptjs');
-const response = require('../_helpers/reponse')
+const response = require('../_helpers/response')
 exports.signup = (req, res, next) => {
     try {
 
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
                 const user = new User({
-                    email: req.body.email,
+                    mail: req.body.mail,
                     password: hash
                 });
                 user.save()
