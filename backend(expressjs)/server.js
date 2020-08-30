@@ -15,7 +15,7 @@ app.use(cors());
 app.use(errorHandler);
 
 // Routes
-// app.use('/user', userRoutes);
+ app.use('/user', userRoutes);
 
 // start server
 

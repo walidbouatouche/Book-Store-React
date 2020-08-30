@@ -2,21 +2,45 @@ import React from 'react'
 import Form from './form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-
+import Auth from '../../helpers/auth'
+import { useSelector, useDispatch } from 'react-redux'
+import { _userAction } from '../../redux/_actions/user.action'
+import { Alerts } from '../../compenents/alerts'
+import Spinner from 'react-bootstrap/Spinner'
 const LoginOrRegister = ({ history }) => {
 
-
+    const state = useSelector(state => state)
+    const dispatch = useDispatch();
 
 
     function singup(user) {
- alert(user.email)
+        dispatch(_userAction.signup(user))
+
     }
 
     function login(user) {
-        alert(user.email)
+        dispatch(_userAction.login(user))
     }
 
 
+    function makeAuth() {
+
+        //  we receive data from backends
+        const { token, userId, role } = state.user.userData
+
+        /* 
+        store user details and jwt token in local storage to 
+        keep user logged in between page refreshes 
+
+        */
+        Auth.setToken(token);
+        Auth.setUserId(userId);
+        Auth.setRole(role)
+        history.push('/')
+        window.location.reload();
+
+
+    }
 
     function restPass(email) {
         alert(" we send new pass in your email")
@@ -25,20 +49,40 @@ const LoginOrRegister = ({ history }) => {
 
 
     return (
+        <div>
+            <br />
+            {state.user.error &&
 
-        <Row >
+                <Alerts.AlertDanger text={state.user.error} />
 
-            <Col lg={6} >
-            <Form   loginOrsingup={login} title={'login'}/>
-            </Col>
+            }
+
+            {state.user.succes &&
+                <Alerts.Alertsuccess text={"singup Success!"} >
+
+                </Alerts.Alertsuccess>
+
+            }
+
+            {state.user.userData && (makeAuth.call())}
+            <Row >
+
+                <Col lg={6} >
+                    <Form loginOrsingup={login} title={'login'} />
+                </Col>
 
 
-            <Col lg={6} >
-            <Form  loginOrsingup={singup} title={'signup'}/>
-            </Col>
-        </Row>
+                <Col lg={6} >
+                    <Form loginOrsingup={singup} title={'signup'} />
+                </Col>
+                {state.user.loading && <Spinner animation="grow" variant="info" />}
 
-       
+
+            </Row>
+
+        </div>
+
+
 
     )
 }

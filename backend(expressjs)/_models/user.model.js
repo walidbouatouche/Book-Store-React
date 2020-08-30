@@ -5,12 +5,12 @@ const userSchema = mongoose.Schema({
 
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    fullName: { type: String, required: true },
-    dateOfBirth: { type: String, required: true },
-    adresse: { type: String, required: true },
-    phone: { type: String, required: true },
-    imgUrl: { type: String, required: true },
-    aubouteMe: { type: String, required: true },
+    fullName: { type: String },
+    dateOfBirth: { type: String },
+    adresse: { type: String },
+    phone: { type: String  },
+    imgUrl: { type: String  },
+    aubouteMe: { type: String },
     role: { type: String, required: true },
     createdAt: { type: String, required: true },
     updatedAt: { type: String, required: true }

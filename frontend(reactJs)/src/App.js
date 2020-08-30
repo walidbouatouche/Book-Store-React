@@ -1,22 +1,38 @@
-import React  ,{useEffect}from 'react';
+import React, { useEffect } from 'react';
 import Layout from "./layout";
-
-import BookList from './pages/login'
+import { Provider } from 'react-redux'
+import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { store } from './helpers/store'
+import Login from'./pages/login'
 
 const App = () => {
 
-  useEffect(()=>{
+  useEffect(() => {
 
- 
-  },[])
+
+  }, [])
   return (<div>
 
-<Layout>
-<BookList />
- 
-  </Layout> 
+  
+    <Router >
+        <Switch>
+        <Layout>
+    <Route path="/login" exact component={Login} />
 
+    </Layout>
+</Switch>
+    </Router >
+        
   </div>)
 }
 
-export default App
+const AppWithStore = () => {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+
+}
+
+export default AppWithStore;
