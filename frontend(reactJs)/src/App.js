@@ -3,7 +3,9 @@ import Layout from "./layout";
 import { Provider } from 'react-redux'
 import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { store } from './helpers/store'
-import Login from'./pages/login'
+import Login from './pages/login'
+import AddBook from './pages/admin/addBook'
+
 
 const App = () => {
 
@@ -13,16 +15,16 @@ const App = () => {
   }, [])
   return (<div>
 
-  
-    <Router >
-        <Switch>
-        <Layout>
-    <Route path="/login" exact component={Login} />
 
-    </Layout>
-</Switch>
+    <Router >
+      <Switch>
+        <Layout>
+          <Route path="/login" exact component={Login} />
+          <Route path="/addbook" exact component={AddBook} />
+        </Layout>
+      </Switch>
     </Router >
-        
+
   </div>)
 }
 
