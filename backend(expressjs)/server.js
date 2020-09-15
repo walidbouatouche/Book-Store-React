@@ -6,16 +6,16 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const errorHandler = require('_middleware/error-handler');
 const userRoutes = require('./_routes/user');
-
+const helmet = require("helmet");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-
+app.use(helmet());
 // global error handler
 app.use(errorHandler);
 
 // Routes
- app.use('/user', userRoutes);
+app.use('/user', userRoutes);
 
 // start server
 
