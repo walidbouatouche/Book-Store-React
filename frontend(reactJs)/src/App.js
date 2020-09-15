@@ -4,9 +4,9 @@ import { Provider } from 'react-redux'
 import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import { store } from './helpers/store'
 import Login from './pages/login'
-import AddBook from './pages/admin/addBook'
+import Admin from './pages/admin'
 
-
+import Home from './pages/home'
 const App = () => {
 
   useEffect(() => {
@@ -19,8 +19,9 @@ const App = () => {
     <Router >
       <Switch>
         <Layout>
+          <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
-          <Route path="/addbook" exact component={AddBook} />
+          <Route path="/admin" exact component={Admin} />
         </Layout>
       </Switch>
     </Router >

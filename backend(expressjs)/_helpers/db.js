@@ -4,7 +4,7 @@ module.exports = db = {};
 initialize();
 
 async function initialize() {
-    await mongoose.connect('mongodb+srv:/***************************',
+    await mongoose.connect('mongodb+srv://<user>:<password>@<cluster-url>',
         {
             useNewUrlParser: true,
             useUnifiedTopology: true

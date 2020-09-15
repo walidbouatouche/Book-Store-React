@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const BookForm = () => {
+const BookForm = ({ addEditBook }) => {
 
     return (
         <Formik
@@ -14,25 +14,25 @@ const BookForm = () => {
             }}
             validationSchema={Yup.object().shape({
                 title: Yup.string()
-                    .required('First Name is required'),
+                    .required('First Name is required').max(50, "max 50!"),
                 description: Yup.string()
-                    .required('Last Name is required'),
+                    .required('Last Name is required').max(100),
                 amazonLink: Yup.string()
-                    .required('Email is required')
+                    .required('Email is required').max(250)
             })}
             onSubmit={fields => {
-                alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4))
+                addEditBook(fields)
             }}
             render={({ errors, status, touched }) => (
                 <Form>
                     <div className="form-group">
-                        <label htmlFor="  title">Title</label>
-                        <Field name="  title" type="text" className={'form-control' + (errors.title && touched.title ? ' is-invalid' : '')} />
-                        <ErrorMessage name="  title" component="div" className="invalid-feedback" />
+                        <label htmlFor="title">Title</label>
+                        <Field name="title" type="text" className={'form-control' + (errors.title && touched.title ? ' is-invalid' : '')} />
+                        <ErrorMessage name="title" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="description">Desc</label>
-                        <Field name="description" type="text" className={'form-control' + (errors.description && touched.description ? ' is-invalid' : '')} />
+                        <label htmlFor="description">Description</label>
+                        <Field name="description" as="textarea" className={'form-control' + (errors.description && touched.description ? ' is-invalid' : '')} />
                         <ErrorMessage name="description" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
@@ -41,7 +41,7 @@ const BookForm = () => {
                         <ErrorMessage name="amazonLink" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary mr-2" style={{background:"#009C41"}} >Register</button>
+                        <button type="submit" className="btn btn-primary mr-2" style={{ background: "#009C41" }} >Register</button>
                         <button type="reset" className="btn btn-secondary">Reset</button>
                     </div>
                 </Form>

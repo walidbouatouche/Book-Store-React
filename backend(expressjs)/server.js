@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const errorHandler = require('_middleware/error-handler');
 const userRoutes = require('./_routes/user');
+const bookRoutes = require('./_routes/book');
 const helmet = require("helmet");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -16,7 +17,7 @@ app.use(errorHandler);
 
 // Routes
 app.use('/user', userRoutes);
-
+app.use('/book', bookRoutes);
 // start server
 
 const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;

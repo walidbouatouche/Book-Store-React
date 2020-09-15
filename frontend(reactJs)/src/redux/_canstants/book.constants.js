@@ -1,0 +1,12 @@
+export const bookConstants = {
+
+    ADD_BOOK_REQUEST: 'ADD_BOOK_REQUEST',
+    ADD_BOOK_SUCCESS: 'ADD_BOOK_SUCCESS',
+    ADD_BOOK_FAILURE: 'ADD_BOOK_FAILURE',
+
+
+
+
+}
+
+
