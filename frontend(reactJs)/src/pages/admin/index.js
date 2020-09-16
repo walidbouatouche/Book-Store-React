@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import AddBook from './addEditBook'
 
@@ -10,6 +10,12 @@ import { useSelector, useDispatch } from 'react-redux'
 
 const Admin = () => {
 
+    useEffect(() => {
+
+        dispatch(_bookAction.getAllBook())
+
+    }, [])
+    
     const state = useSelector(state => state)
     const dispatch = useDispatch();
 
@@ -25,7 +31,7 @@ const Admin = () => {
 
             <AddBook addEditBook={addBook} />
         </Model>
-        <BookTable />
+        {state.book.books && <BookTable books={state.book.books} />}
 
     </div>)
 }

@@ -6,11 +6,11 @@ const Menu = () => {
 
     return (<>
         <Navbar  style={{background:"#009C41"}} variant="dark">
-            <Navbar.Brand href="#home"> Book  store</Navbar.Brand>
+            <Navbar.Brand  as={Link} to="/" > Book  store</Navbar.Brand>
             <Nav className="mr-auto">
                 <Nav.Link  as={Link} to="/" >Home</Nav.Link>
                 <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                <Nav.Link as={Link} to="/login">Book Admin</Nav.Link>
+                <Nav.Link as={Link} to="/admin">Book Admin</Nav.Link>
              </Nav>
 
         </Navbar>

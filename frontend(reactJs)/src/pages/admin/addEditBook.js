@@ -41,7 +41,7 @@ const BookForm = ({ addEditBook }) => {
                         <ErrorMessage name="amazonLink" component="div" className="invalid-feedback" />
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-primary mr-2" style={{ background: "#009C41" }} >Register</button>
+                        <button type="submit" className="btn btn-primary mr-2" style={{ background: "#009C41" }} >Save</button>
                         <button type="reset" className="btn btn-secondary">Reset</button>
                     </div>
                 </Form>

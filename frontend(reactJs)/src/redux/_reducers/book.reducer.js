@@ -1,7 +1,7 @@
 import { bookConstants } from '../_canstants/book.constants'
 
 
-export function user(state = {}, action) {
+export function book(state = {}, action) {
     console.log(action)
     switch (action.type) {
         case bookConstants.ADD_BOOK_REQUEST:
@@ -23,6 +23,26 @@ export function user(state = {}, action) {
                 loading: false
             }
 
+            case bookConstants.GET_BOOKS_REQUEST:
+                return {
+                    ...state,
+                    loading: true
+                };
+    
+            case bookConstants.GET_BOOKS_SUCCESS:
+                return {
+                    ...state,
+                    succes: true,
+                    loading: false ,
+                    books:action.books.data
+                }
+    
+            case bookConstants.GET_BOOKS_FAILURE:
+                return {
+                    error: action.error,
+                    loading: false
+                }
+    
 
 
         default:

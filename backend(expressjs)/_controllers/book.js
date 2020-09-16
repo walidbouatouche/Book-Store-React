@@ -26,3 +26,25 @@ exports.addBook = (req, res, next) => {
 
 
 
+exports.getAllBook = (req, res, next) => {
+    try {
+        
+        Book.find().then(
+            (Books) => {
+                response(res, 200, Books)
+            }
+        ).catch(
+            (error) => {
+                response(res, 400, { message: "somthing worng" })
+            }
+        );
+    }
+
+    catch (err) {
+        res.status(400).json({ message: err.message || err.toString() });
+
+    }
+
+
+
+};
