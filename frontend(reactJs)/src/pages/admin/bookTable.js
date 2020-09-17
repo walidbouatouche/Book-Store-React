@@ -1,16 +1,24 @@
 import React from 'react'
 
 import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
 
 import { faEdit, faTrash, faPlus, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const BookTable = ({ books, deletBook }) => {
+import AddBook from './addEditBook'
+import Model from '../../compenents/model'
+
+
+const BookTable = ({ books, deletBook, updateBook }) => {
 
 
   const getBookId = (bookId) => {
     deletBook(bookId)
 
+  }
+  const _updateBook = (bookData) => {
+    updateBook(bookData)
   }
 
   return (<div>
@@ -31,8 +39,23 @@ const BookTable = ({ books, deletBook }) => {
           <tr key={book._id}>
             <td>{index + 1}</td>
             <td>{book.title}</td>
-            <td><FontAwesomeIcon icon={faEdit} /></td>
-            <td onClick={() => getBookId(book._id)}><FontAwesomeIcon icon={faTrash} /></td>
+            <td>
+
+
+
+
+              <Model title={"edit Book"} launchTitle={<FontAwesomeIcon icon={faEdit} />}>
+
+                <AddBook _book={book} addEditBook={_updateBook} />
+              </Model>
+            </td>
+            <td onClick={() => getBookId(book._id)}>
+              
+              
+              <Button variant="success"  >
+              <FontAwesomeIcon icon={faTrash} />
+        </Button>
+              </td>
           </tr>
         )}
 

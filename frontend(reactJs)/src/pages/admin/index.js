@@ -21,6 +21,7 @@ const Admin = () => {
 
 
     const addBook = (bookData) => {
+        delete bookData._id
         dispatch(_bookAction.addBook(bookData))
 
     }
@@ -28,15 +29,18 @@ const Admin = () => {
         dispatch(_bookAction.deleteOneBook(bookId))
 
     }
-
+  const _updateBook = (bookData)=>{
+    dispatch(_bookAction.updateBook(bookData))
+   
+  }
     return (<div>
 
 
         <Model title={"add Book"} launchTitle={"+"}>
 
-            <AddBook addEditBook={addBook} />
+            <AddBook  addEditBook={addBook} />
         </Model>
-        {state.book.books && <BookTable deletBook={_deletBook} books={state.book.books} />}
+        {state.book.books && <BookTable  updateBook={_updateBook} deletBook={_deletBook} books={state.book.books} />}
 
     </div>)
 }

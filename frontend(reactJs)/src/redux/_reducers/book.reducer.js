@@ -63,7 +63,27 @@ export function book(state = {}, action) {
                 loading: false
             }
 
-
+            case bookConstants.UPDATE_BOOK_REQUEST:
+                return {
+                    ...state,
+                    loading: true
+                };
+    
+            case bookConstants.UPDATE_BOOK_SUCCESS:
+                return {
+                    ...state,
+                    succes: true,
+                    loading: false,
+    
+                }
+    
+            case bookConstants.UPDATE_BOOK_FAILURE:
+                return {
+                    error: action.error,
+                    loading: false
+                }
+    
+    
 
         default:
             return state;

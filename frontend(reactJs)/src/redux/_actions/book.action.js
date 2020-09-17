@@ -5,8 +5,8 @@ import { bookConstants } from '../_canstants/book.constants'
 export const _bookAction = {
     addBook,
     getAllBook,
-    deleteOneBook
-
+    deleteOneBook,
+    updateBook
 
 }
 
@@ -51,10 +51,10 @@ function getAllBook() {
         }).then((books) => {
             dispatch(
                 {
-                type: bookConstants.GET_BOOKS_SUCCESS,
-                books
-            }
-      
+                    type: bookConstants.GET_BOOKS_SUCCESS,
+                    books
+                }
+
             )
         },
             ({ response }) => {
@@ -77,16 +77,16 @@ function deleteOneBook(bookId) {
         return sendRequest({
             method: 'DELETE',
             url: `/book/${bookId}`
-        }).then((books) => {
+        }).then(() => {
             dispatch(
-            //     {
-            //     type: bookConstants.DELETE_BOOK_REQUEST,
-            //    
-            // }
+                //     {
+                //     type: bookConstants.DELETE_BOOK_REQUEST,
+                //    
+                // }
 
-            getAllBook()
-            
-            
+                getAllBook()
+
+
             )
         },
             ({ response }) => {
@@ -102,3 +102,32 @@ function deleteOneBook(bookId) {
 
 
 
+
+function updateBook(data) {
+    return dispatch => {
+        dispatch({
+            type: bookConstants.UPDATE_BOOK_REQUEST
+        })
+        return sendRequest({
+            method: 'PUT',
+            url: `/book/${data.bookId}`,
+            data
+        }).then(() => {
+            dispatch(
+
+                //  {   type: bookConstants.UPDATE_BOOK_SUCCESS,
+
+
+                // },
+                getAllBook()
+            )
+        },
+            ({ response }) => {
+                dispatch({
+                    type: bookConstants.UPDATE_BOOK_FAILURE,
+                    error: (response != undefined && response != null) ? response.data.message : "somthing wrong"
+                })
+            }
+        )
+    }
+}

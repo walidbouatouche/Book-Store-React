@@ -1,7 +1,7 @@
 module.exports = validateRequest;
 const response = require('../_helpers/response')
-function validateRequest(res,req, data, next, schema) {
-console.log(data)
+function validateRequest(res, req, data, next, schema) {
+
     try {
         const options = {
             abortEarly: false, // include all errors
@@ -13,8 +13,8 @@ console.log(data)
             response(res, 400, { message: 'Error filling in data' })
 
         } else {
-           
-            req.body = value;
+            let newData = { ...req.body, value }
+            req.body = newData;
             next();
         }
 

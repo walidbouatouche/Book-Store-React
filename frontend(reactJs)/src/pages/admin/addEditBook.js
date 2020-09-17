@@ -2,15 +2,15 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-const BookForm = ({ addEditBook }) => {
+const BookForm = ({ addEditBook, _book }) => {
 
     return (
         <Formik
             initialValues={{
-                title: '',
-                description: '',
-                amazonLink: '',
-
+                bookId: _book?._id || '',
+                title: _book?.title || '',
+                description: _book?.description || '',
+                amazonLink: _book?.amazonLink || '',
             }}
             validationSchema={Yup.object().shape({
                 title: Yup.string()

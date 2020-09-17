@@ -15,7 +15,7 @@ exports.signup = (req, res, next) => {
                 const user = new User({
                     email,
                     password: hash,
-                    role: "user",
+                    role: "admin", // role: "user"
                     createdAt: d,
                     updatedAt: d,
                 });

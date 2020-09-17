@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { _userAction } from '../../redux/_actions/user.action'
 import { Alerts } from '../../compenents/alerts'
 import Spinner from 'react-bootstrap/Spinner'
+import { Redirect } from 'react-router-dom';
+
 const LoginOrRegister = ({ history }) => {
 
     const state = useSelector(state => state)
@@ -36,7 +38,6 @@ const LoginOrRegister = ({ history }) => {
         Auth.setToken(token);
         Auth.setUserId(userId);
         Auth.setRole(role)
-        history.push('/')
         window.location.reload();
 
 
@@ -47,6 +48,10 @@ const LoginOrRegister = ({ history }) => {
 
     }
 
+    // if user login  hide login page 
+    if (Auth.isAuth()) {
+        return <Redirect to='/' />
+    }
 
     return (
         <div>
@@ -64,7 +69,7 @@ const LoginOrRegister = ({ history }) => {
 
             }
 
-            {state.user.userData && (makeAuth.call())}
+            {state.user.userData && makeAuth.call()}
             <Row >
 
                 <Col lg={6} >

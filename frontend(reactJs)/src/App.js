@@ -5,7 +5,7 @@ import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-d
 import { store } from './helpers/store'
 import Login from './pages/login'
 import Admin from './pages/admin'
-
+import { AdminRoute } from './helpers/privateRoute'
 import Home from './pages/home'
 const App = () => {
 
@@ -21,7 +21,8 @@ const App = () => {
         <Layout>
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
-          <Route path="/admin" exact component={Admin} />
+          <AdminRoute path="/admin" exact component={Admin} />
+          <Redirect to="/" />
         </Layout>
       </Switch>
     </Router >
