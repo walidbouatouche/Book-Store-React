@@ -5,8 +5,13 @@ import Table from 'react-bootstrap/Table'
 import { faEdit, faTrash, faPlus, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const BookTable = ({ books }) => {
+const BookTable = ({ books, deletBook }) => {
 
+
+  const getBookId = (bookId) => {
+    deletBook(bookId)
+
+  }
 
   return (<div>
     <p></p>
@@ -22,12 +27,12 @@ const BookTable = ({ books }) => {
         </tr>
       </thead>
       <tbody>
-        {books.map((book,index) =>
+        {books.map((book, index) =>
           <tr key={book._id}>
-            <td>{index+1}</td>
+            <td>{index + 1}</td>
             <td>{book.title}</td>
             <td><FontAwesomeIcon icon={faEdit} /></td>
-            <td><FontAwesomeIcon icon={faTrash} /></td>
+            <td onClick={() => getBookId(book._id)}><FontAwesomeIcon icon={faTrash} /></td>
           </tr>
         )}
 

@@ -4,7 +4,8 @@ import { bookConstants } from '../_canstants/book.constants'
 
 export const _bookAction = {
     addBook,
-    getAllBook
+    getAllBook,
+    deleteOneBook
 
 
 }
@@ -20,13 +21,13 @@ function addBook(data) {
             url: `/book/`,
             data
         }).then(() => {
-             dispatch(
-               
-            //  {   type: bookConstants.ADD_BOOK_SUCCESS,
-              
+            dispatch(
 
-            // },
-            getAllBook()
+                //  {   type: bookConstants.ADD_BOOK_SUCCESS,
+
+
+                // },
+                getAllBook()
             )
         },
             ({ response }) => {
@@ -48,10 +49,13 @@ function getAllBook() {
             method: 'GET',
             url: `/book/`
         }).then((books) => {
-            dispatch({
+            dispatch(
+                {
                 type: bookConstants.GET_BOOKS_SUCCESS,
                 books
-            })
+            }
+      
+            )
         },
             ({ response }) => {
                 dispatch({
@@ -62,5 +66,39 @@ function getAllBook() {
         )
     }
 }
+
+
+
+function deleteOneBook(bookId) {
+    return dispatch => {
+        dispatch({
+            type: bookConstants.DELETE_BOOK_REQUEST
+        })
+        return sendRequest({
+            method: 'DELETE',
+            url: `/book/${bookId}`
+        }).then((books) => {
+            dispatch(
+            //     {
+            //     type: bookConstants.DELETE_BOOK_REQUEST,
+            //    
+            // }
+
+            getAllBook()
+            
+            
+            )
+        },
+            ({ response }) => {
+                dispatch({
+                    type: bookConstants.DELETE_BOOK_FAILURE,
+                    error: (response != undefined && response != null) ? response.data.message : "somthing wrong"
+                })
+            }
+        )
+    }
+}
+
+
 
 

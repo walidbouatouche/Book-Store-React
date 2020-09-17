@@ -28,10 +28,36 @@ exports.addBook = (req, res, next) => {
 
 exports.getAllBook = (req, res, next) => {
     try {
-        
+
         Book.find().then(
             (Books) => {
                 response(res, 200, Books)
+            }
+        ).catch(
+            (error) => {
+                response(res, 400, { message: "somthing worng" })
+            }
+        );
+    }
+
+    catch (err) {
+        res.status(400).json({ message: err.message || err.toString() });
+
+    }
+
+
+
+};
+
+exports.deleteOneBook = (req, res, next) => {
+
+    const { bookId } = req.body
+    console.log(bookId)
+    try {
+
+        Book.deleteOne({ _id: bookId }).then(
+            () => {
+                response(res, 200, { message: "Book deleted" })
             }
         ).catch(
             (error) => {

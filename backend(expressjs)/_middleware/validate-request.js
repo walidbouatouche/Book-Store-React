@@ -13,6 +13,7 @@ console.log(data)
             response(res, 400, { message: 'Error filling in data' })
 
         } else {
+           
             req.body = value;
             next();
         }

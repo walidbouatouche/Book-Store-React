@@ -5,4 +5,7 @@ const bookValidation = require('../_validations/book');
 
 router.post('/', bookValidation.addBookValidation, bookCtrl.addBook);
 router.get('/', bookCtrl.getAllBook);
+router.delete('/:bookId', bookValidation.idBookValidation, bookCtrl.deleteOneBook);
+
+
 module.exports = router;

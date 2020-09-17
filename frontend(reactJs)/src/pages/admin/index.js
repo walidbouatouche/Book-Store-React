@@ -9,18 +9,23 @@ import { _bookAction } from '../../redux/_actions/book.action'
 import { useSelector, useDispatch } from 'react-redux'
 
 const Admin = () => {
+    const state = useSelector(state => state)
+    const dispatch = useDispatch();
 
     useEffect(() => {
 
         dispatch(_bookAction.getAllBook())
 
     }, [])
-    
-    const state = useSelector(state => state)
-    const dispatch = useDispatch();
+
+
 
     const addBook = (bookData) => {
         dispatch(_bookAction.addBook(bookData))
+
+    }
+    const _deletBook = (bookId) => {
+        dispatch(_bookAction.deleteOneBook(bookId))
 
     }
 
@@ -31,7 +36,7 @@ const Admin = () => {
 
             <AddBook addEditBook={addBook} />
         </Model>
-        {state.book.books && <BookTable books={state.book.books} />}
+        {state.book.books && <BookTable deletBook={_deletBook} books={state.book.books} />}
 
     </div>)
 }
