@@ -1,0 +1,13 @@
+export const favoriConstants = {
+
+    ADD_FAVORI_REQUEST: 'ADD_FAVORI_REQUEST',
+    ADD_FAVORI_SUCCESS: 'ADD_FAVORI_SUCCESS',
+    ADD_FAVORI_FAILURE: 'ADD_FAVORI_FAILURE',
+ 
+
+
+
+
+}
+
+

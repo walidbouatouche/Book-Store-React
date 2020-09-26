@@ -13,8 +13,10 @@ function validateRequest(res, req, data, next, schema) {
             response(res, 400, { message: 'Error filling in data' })
 
         } else {
-            let newData = { ...req.body, value }
+            let newData = { ...req.body, ...value }
+
             req.body = newData;
+
             next();
         }
 
