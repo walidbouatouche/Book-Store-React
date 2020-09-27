@@ -8,5 +8,7 @@ const bookValidation = require('../_validations/book');
 router.post('/', auth,bookValidation.idBookValidation ,
     favoriteCtrl.addToFavorite
 );
-
+router.get('/', auth,favoriteCtrl.getMyFavorite ,
+    favoriteCtrl.addToFavorite
+);
 module.exports = router;

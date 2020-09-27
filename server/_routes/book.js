@@ -9,4 +9,11 @@ router.delete('/:bookId', bookValidation.idBookValidation, bookCtrl.deleteOneBoo
 router.put('/:bookId', bookValidation.addEditBookValidation, bookValidation.idBookValidation, bookCtrl.updateBook);
 
 
+
+/*
+here Other Method
+ when route  
+router.param('bookId',bookValidation.addEditBookValidation)
+*/
+
 module.exports = router;
