@@ -12,14 +12,11 @@ exports.addToFavorite = (req, res, next) => {
     let d = new Date();
 
     try {
-    /*     Favorite.findOne({bookId}).then((res)=>{
-console.log(res)
-            if(res){
-                response(res, 400, { message: " favori Already Added" })
+       Favorite.findOne({bookId,userId}).then((data)=>{
 
-            }
-        }) 
-        */ 
+        if(!data) {
+         
+      
         const favorite = new Favorite({
             userId,
             bookId,
@@ -29,7 +26,16 @@ console.log(res)
         favorite.save()
             .then(() => response(res, 201, { message: 'Add to favorite !' }))
             .catch(error => response(res, 400, { message: " Error" }));
-
+       }
+    else{
+        response(res, 400, { message: 'favorite already !' })
+    }
+    
+    
+    
+    
+    }) 
+   
     }
 
     catch (err) {

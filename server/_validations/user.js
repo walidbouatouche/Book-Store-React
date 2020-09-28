@@ -17,3 +17,6 @@ exports.signupValidation = (req, res, next) => {
 
     }
 }
+
+
+ 
