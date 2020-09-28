@@ -16,7 +16,8 @@ const Menu = () => {
             <Navbar.Brand as={Link} to="/" > Book  store</Navbar.Brand>
             <Nav className="mr-auto">
                 {!Auth.isAuth() && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
-                {Auth.isAuth() && <Nav.Link as={Link} to="/admin">Book Admin</Nav.Link>}
+                {Auth.isAuth() && Auth.getRole()=="admin" &&  <Nav.Link as={Link} to="/admin">Book Admin</Nav.Link>}
+                {Auth.isAuth() &&  Auth.getRole()=="user" && <Nav.Link as={Link} to="/favori">Favoris</Nav.Link>}
 
             </Nav>
             {Auth.isAuth() &&

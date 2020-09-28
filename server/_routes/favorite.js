@@ -11,4 +11,5 @@ router.post('/', auth,bookValidation.idBookValidation ,
 router.get('/', auth,favoriteCtrl.getMyFavorite ,
     favoriteCtrl.addToFavorite
 );
+router.delete('/:favoriteId',auth,favoriteCtrl.deleteOneFavori)
 module.exports = router;

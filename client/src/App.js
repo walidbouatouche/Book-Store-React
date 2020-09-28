@@ -5,8 +5,9 @@ import { Switch, BrowserRouter as Router, Route, Redirect } from 'react-router-d
 import { store } from './helpers/store'
 import Login from './pages/login'
 import Admin from './pages/admin'
-import { AdminRoute } from './helpers/privateRoute'
+import { AdminRoute, UserRoute } from './helpers/privateRoute'
 import Home from './pages/home'
+import Favori from './pages/favoris'
 const App = () => {
 
   useEffect(() => {
@@ -19,9 +20,10 @@ const App = () => {
     <Router >
       <Switch>
         <Layout>
+          <AdminRoute path="/admin" exact component={Admin} />
+          <UserRoute path="/favori" exact component={Favori} />
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
-          <AdminRoute path="/admin" exact component={Admin} />
           <Redirect to="/" />
         </Layout>
       </Switch>

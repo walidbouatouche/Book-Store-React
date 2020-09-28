@@ -7,15 +7,19 @@ exports.addToFavorite = (req, res, next) => {
 
     const { userId, bookId } = req.body
 
-    console.log(userId)
-    console.log(bookId)
-    console.log(req.body)
 
 
     let d = new Date();
 
     try {
+    /*     Favorite.findOne({bookId}).then((res)=>{
+console.log(res)
+            if(res){
+                response(res, 400, { message: " favori Already Added" })
 
+            }
+        }) 
+        */ 
         const favorite = new Favorite({
             userId,
             bookId,
@@ -24,7 +28,7 @@ exports.addToFavorite = (req, res, next) => {
         });
         favorite.save()
             .then(() => response(res, 201, { message: 'Add to favorite !' }))
-            .catch(error => response(res, 400, { message: " favori Already Added" }));
+            .catch(error => response(res, 400, { message: " Error" }));
 
     }
 
@@ -32,6 +36,34 @@ exports.addToFavorite = (req, res, next) => {
         res.status(400).json({ message: err.message || err.toString() });
 
     }
+
+
+};
+
+
+exports.deleteOneFavori = (req, res, next) => {
+
+    const {  userId } = req.body
+    const { favoriteId } = req.params
+
+    try {
+
+        Favorite.deleteOne({ _id: favoriteId, userId }).then(
+            () => {
+                response(res, 200, { message: " Favori deleted" })
+            }
+        ).catch(
+            (error) => {
+                response(res, 400, { message: "somthing worng" })
+            }
+        );
+    }
+
+    catch (err) {
+        res.status(400).json({ message: err.message || err.toString() });
+
+    }
+
 
 
 };
