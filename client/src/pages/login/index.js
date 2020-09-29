@@ -58,12 +58,12 @@ const LoginOrRegister = ({ history }) => {
             <br />
             {state.user.error &&
 
-                <Alerts.AlertDanger text={state.user.error} />
+                <Alerts.AlertDanger _display={'block'} text={state.user.error} />
 
             }
 
-            {state.user.succes &&
-                <Alerts.Alertsuccess text={"singup Success!"} >
+            {state.user.succes  &&
+                <Alerts.Alertsuccess _display={'block'} text={"singup Success!"} >
 
                 </Alerts.Alertsuccess>
 

@@ -7,32 +7,42 @@ export function user(state = {}, action) {
         case userConstants.USER_SIGNUP_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true ,
+                succes: false ,
+                error:false
             };
 
         case userConstants.USER_SIGNUP_SUCCESS:
             return {
                 ...state,
                 succes: true,
-                loading: false
+                loading: false ,
+                error:false
+               
             }
+           
 
         case userConstants.USER_SIGNUP_FAILURE:
             return {
+                ...state,
                 error: action.error,
-                loading: false
+                loading: false,
+                succes: false
             }
         case userConstants.USER_LOGIN_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true ,
+                succes: false ,
+                error:false
             };
 
         case userConstants.USER_LOGIN_SUCCESS:
             return {
                 ...state,
                 succes: true,
-                loading: false,
+                loading: false ,
+                error:false,
                 userData: action.user.data
             }
 
@@ -40,6 +50,8 @@ export function user(state = {}, action) {
             return {
                 ...state,
                 loading: false,
+                loading: false,
+                succes: false,
                 error: action.error
             }
 
