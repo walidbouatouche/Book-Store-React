@@ -51,7 +51,7 @@ exports.getAllBook = (req, res, next) => {
 
 exports.deleteOneBook = (req, res, next) => {
 console.log(req.body)
-    const { bookId } = req.body.value
+    const { bookId } = req.body
     console.log(bookId)
     try {
 

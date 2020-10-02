@@ -16,7 +16,7 @@ exports.signup = (req, res, next) => {
                     email,
                     password: hash,
                     //role: "admin",
-                     role: "user",
+                    role: "user",
                     createdAt: d,
                     updatedAt: d,
                 });
@@ -62,3 +62,21 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
 };
+
+exports.getUserInfos = (req, res, next) => {
+    try {
+
+
+        const { userId } = req.body
+         
+        console.log(userId)
+    }
+
+    catch (err) {
+        res.status(400).json({ message: err.message || err.toString() });
+
+    }
+
+
+
+}
