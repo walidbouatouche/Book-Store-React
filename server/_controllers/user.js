@@ -1,6 +1,6 @@
 const User = require('../_models/user.model');
 const bcrypt = require('bcryptjs');
-const response = require('../_helpers/response')
+const response = require('../_helpers/response') ///response *_*
 const jwt = require('jsonwebtoken');
 exports.signup = (req, res, next) => {
 
@@ -41,7 +41,7 @@ exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
             if (!user) {
-                return res.status(401).json({ error: 'User not found ' });
+                return response(res, 401, { message: 'User not found' });
             }
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
@@ -58,9 +58,9 @@ exports.login = (req, res, next) => {
                         )
                     });
                 })
-                .catch(error => res.status(500).json({ error }));
+                .catch(error => res.status(400).json({ error }));
         })
-        .catch(error => res.status(500).json({ error }));
+        .catch(error => res.status(400).json({ error }));
 };
 
 exports.getUserInfos = (req, res, next) => {
@@ -68,8 +68,20 @@ exports.getUserInfos = (req, res, next) => {
 
 
         const { userId } = req.body
-         
-        console.log(userId)
+
+        User.find({ _id: userId }).select("-password -role")
+            .then(user => {
+                if (!user) {
+                    response(res, 401, { message: 'User not found' })
+                }
+                else {
+
+                    res.status(200).json(user);
+                }
+
+            })
+            .catch(error => res.status(400).json({ error }));
+
     }
 
     catch (err) {
@@ -80,3 +92,10 @@ exports.getUserInfos = (req, res, next) => {
 
 
 }
+
+
+
+/* 
+User.findOneAndUpdate({username: req.params.username}, {username: req.body.username}, function(err, user) {
+   
+}); */

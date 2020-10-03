@@ -16,8 +16,9 @@ const Menu = () => {
             <Navbar.Brand as={Link} to="/" > Book  store</Navbar.Brand>
             <Nav className="mr-auto">
                 {!Auth.isAuth() && <Nav.Link as={Link} to="/login">Login</Nav.Link>}
-                {Auth.isAuth() && Auth.getRole()=="admin" &&  <Nav.Link as={Link} to="/admin">Book Admin</Nav.Link>}
-                {Auth.isAuth() &&  Auth.getRole()=="user" && <Nav.Link as={Link} to="/favori">Favoris</Nav.Link>}
+                {Auth.isAuth() && Auth.getRole() == "admin" && <Nav.Link as={Link} to="/admin">Book Admin</Nav.Link>}
+                {Auth.isAuth() && Auth.getRole() == "user" && <Nav.Link as={Link} to="/favori">Favoris</Nav.Link>}
+                {Auth.isAuth() && <Nav.Link as={Link} to="/profil">Profil</Nav.Link>}
 
             </Nav>
             {Auth.isAuth() &&
@@ -25,7 +26,7 @@ const Menu = () => {
                     style={{
                         background: "#009C41",
                         float: "right",
-                        border:"1px solid white"
+                        border: "1px solid white"
                     }
                     } onClick={logout}> Logout</Button>}
 

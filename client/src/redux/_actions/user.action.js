@@ -5,6 +5,7 @@ import { userConstants } from '../_canstants/user.constants'
 export const _userAction = {
     signup,
     login,
+    getUserData ,
 
 }
 
@@ -62,3 +63,27 @@ function login(data) {
 }
 
 
+
+function getUserData() {
+    return dispatch => {
+        dispatch({
+            type: userConstants.GET_USER_DATA_REQUEST 
+        })
+        return sendRequest({
+            method: 'GET',
+            url: `/user/getuserdata/`,
+        }).then((userData) => {
+            dispatch({
+                type: userConstants.GET_USER_DATA_SUCCESS,
+                 userData
+            })
+        },
+            ({ response }) => {
+                dispatch({
+                    type: userConstants.GET_USER_DATA_FAILURE,
+                    error: (response != undefined && response != null) ? response.data.message : "somthing wrong"
+                })
+            }
+        )
+    }
+}

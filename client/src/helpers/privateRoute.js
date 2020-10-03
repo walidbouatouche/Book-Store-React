@@ -10,6 +10,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const testUser = Auth.getRole() === 'user';
 const testAdmin = Auth.getRole() === 'admin';
+const testAdminOrUser = Auth.getRole() === 'admin' || Auth.getRole() === 'user';
 
 
 const UserRoute = ({ component: Component_, ...rest }) => {
@@ -44,7 +45,7 @@ const UserRoute = ({ component: Component_, ...rest }) => {
 const AdminRoute = ({ component: Component_, ...rest }) => {
 
 
- 
+
 
     if ((testAdmin === false)) {
         return (
@@ -74,10 +75,36 @@ const AdminRoute = ({ component: Component_, ...rest }) => {
 
 
 
-
-
 }
 
 
+const UserOrAdminRoute = ({ component: Component_, ...rest }) => {
 
-export { UserRoute, AdminRoute }
+
+
+
+    if ((testAdminOrUser === false)) {
+        return (
+            <Redirect to='/login' />
+        );
+
+    }
+
+    // only show when  in
+
+    else {
+        return (
+            <div>
+                <Route  {...rest} render={props => {
+
+                    return <Component_ {...props}></Component_>
+                }} />
+            </div>
+
+        );
+
+    }
+
+}
+
+export { UserRoute, AdminRoute ,UserOrAdminRoute }

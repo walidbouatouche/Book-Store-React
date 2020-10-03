@@ -54,7 +54,32 @@ export function user(state = {}, action) {
                 succes: false,
                 error: action.error
             }
-
+            case userConstants.USER_LOGIN_REQUEST:
+                return {
+                    ...state,
+                    loading: true ,
+                    succes: false ,
+                    error:false
+                };
+    
+            case userConstants.GET_USER_DATA_SUCCESS:
+                return {
+                    ...state,
+                    succes: true,
+                    loading: false ,
+                    error:false,
+                   _userData: action.userData.data[0]
+                }
+    
+            case userConstants.GET_USER_DATA_FAILURE:
+                return {
+                    ...state,
+                    loading: false,
+                    loading: false,
+                    succes: false,
+                    error: action.error
+                }
+    
  
         default:
             return state;
