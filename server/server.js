@@ -9,8 +9,10 @@ const userRoutes = require('./_routes/user');
 const bookRoutes = require('./_routes/book');
 const favoriRoutes = require('./_routes/favorite');
 const helmet = require("helmet");
+
+app.use(bodyParser.json({limit:'50 mb'}));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
 app.use(cors());
 app.use(helmet());
 // global error handler

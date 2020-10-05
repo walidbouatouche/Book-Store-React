@@ -15,8 +15,8 @@ const sendRequest = (config) => {
     axios(config).then((data) => {
       resolve(data)
     }).catch((e) => {
-      console.log(e)
-      if (e.response && e.response.status === 500) {
+      console.log(e.response.data.message)
+      if (e?.response && e.response.data && e.response.data.message && e.response.data.message=="jwt expired") {
       Auth.clearAll() // logout if token not valid Or token expired
 
       }

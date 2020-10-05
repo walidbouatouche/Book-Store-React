@@ -1,22 +1,26 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 
 import { useSelector, useDispatch } from 'react-redux'
 import { _userAction } from '../../redux/_actions/user.action'
 
+import UserForm from './userInfoForm'
 
-const UserProfil=()=>{ 
+const UserProfil = () => {
     const state = useSelector(state => state)
     const dispatch = useDispatch();
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(_userAction.getUserData())
 
-    },[])
-    return(<div>
-{state.user._userData && JSON.stringify(state.user._userData)}
-
-        <p>my profile</p>
+    }, [])
+    const editUser=(userData)=>{
+        dispatch(_userAction.updateUser(userData))
+        
+    }
+    return (<div>
+        {state.user._userData && <UserForm  _editUser={editUser} _user={state.user._userData}></UserForm>}
+       
     </div>)
 
 

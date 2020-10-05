@@ -95,7 +95,50 @@ exports.getUserInfos = (req, res, next) => {
 
 
 
-/* 
+exports.updateUser = (req, res, next) => {
+    try {
+
+
+        const {
+            userId,
+            fullName,
+            dateOfBirth,
+            adresse,
+            phone,
+            imgUrl,
+            aubouteMe
+        } = req.body
+
+        User.findOneAndUpdate(
+            { _id: userId }
+            ,
+            {
+                fullName,
+                dateOfBirth,
+                adresse,
+                phone,
+                imgUrl,
+                aubouteMe
+
+
+            })
+            .then(() => {
+
+                response(res, 201, { message: 'User updated !' })
+
+
+            })
+            .catch(error => res.status(400).json({ error }));
+
+    }
+
+    catch (err) {
+        res.status(400).json({ message: err.message || err.toString() });
+
+    }
+
+}
+/*
 User.findOneAndUpdate({username: req.params.username}, {username: req.body.username}, function(err, user) {
-   
+
 }); */

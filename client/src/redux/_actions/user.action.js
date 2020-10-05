@@ -5,7 +5,8 @@ import { userConstants } from '../_canstants/user.constants'
 export const _userAction = {
     signup,
     login,
-    getUserData ,
+    getUserData,
+    updateUser
 
 }
 
@@ -18,7 +19,7 @@ function signup(data) {
         return sendRequest({
             method: 'POST',
             url: `/user/signup/`,
-            data 
+            data
         }).then(() => {
             dispatch({
                 type: userConstants.USER_SIGNUP_SUCCESS,
@@ -45,7 +46,7 @@ function login(data) {
         return sendRequest({
             method: 'POST',
             url: `/user/login/`,
-            data 
+            data
         }).then((user) => {
             dispatch({
                 type: userConstants.USER_LOGIN_SUCCESS,
@@ -67,7 +68,7 @@ function login(data) {
 function getUserData() {
     return dispatch => {
         dispatch({
-            type: userConstants.GET_USER_DATA_REQUEST 
+            type: userConstants.GET_USER_DATA_REQUEST
         })
         return sendRequest({
             method: 'GET',
@@ -75,7 +76,7 @@ function getUserData() {
         }).then((userData) => {
             dispatch({
                 type: userConstants.GET_USER_DATA_SUCCESS,
-                 userData
+                userData
             })
         },
             ({ response }) => {
@@ -87,3 +88,30 @@ function getUserData() {
         )
     }
 }
+
+
+
+function updateUser(data) {
+    return dispatch => {
+        dispatch({
+            type: userConstants.UPDATE_USER_REQUEST
+        })
+        return sendRequest({
+            method: 'PUT',
+            url: `/user/updateuser/`,
+            data
+        }).then(() => {
+            dispatch(
+                getUserData()
+            )
+        },
+            ({ response }) => {
+                dispatch({
+                    type: userConstants.UPDATE_USER_FAILURE,
+                    error: (response != undefined && response != null) ? response.data.message : "somthing wrong"
+                })
+            }
+        )
+    }
+}
+

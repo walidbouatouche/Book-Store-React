@@ -79,8 +79,33 @@ export function user(state = {}, action) {
                     succes: false,
                     error: action.error
                 }
-    
- 
+       
+       
+       case userConstants.UPDATE_USER_REQUEST:
+        return {
+            ...state,
+            loading: true ,
+            succes: false ,
+            error:false
+        };
+
+    case userConstants.UPDATE_USER_SUCCESS:
+        return {
+            ...state,
+            succes: true,
+            loading: false ,
+            error:false,
+          
+        }
+
+    case userConstants.USER_SIGNUP_FAILURE :
+        return {
+            ...state,
+            loading: false,
+            loading: false,
+            succes: false,
+            error: action.error
+        }
         default:
             return state;
     }
