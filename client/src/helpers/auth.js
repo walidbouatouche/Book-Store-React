@@ -7,6 +7,7 @@ class _Auth {
         this._userId = localStorage.getItem('userId') || ""
         this._token = localStorage.getItem('token') || ""
         this._role = localStorage.getItem('role') || ""
+        this._imgUrl = localStorage.getItem('imgUrl') || ""
     }
     setToken(token) {
         localStorage.setItem('token', token)
@@ -20,6 +21,10 @@ class _Auth {
         localStorage.setItem('role', role);
         this._role = role;
     }
+    setImgUrl(imgUrl) {
+        localStorage.setItem('imgUrl', imgUrl);
+        this._imgUrl= imgUrl;
+    }
     getToken() {
         return this._token;
     }
@@ -31,6 +36,9 @@ class _Auth {
     }
     getUserId() {
         return this._userId;
+    }
+    getImgUrl() {
+        return this._imgUrl;
     }
 
 

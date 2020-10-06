@@ -76,7 +76,7 @@ function getUserData() {
         }).then((userData) => {
             dispatch({
                 type: userConstants.GET_USER_DATA_SUCCESS,
-                userData
+                userData 
             })
         },
             ({ response }) => {

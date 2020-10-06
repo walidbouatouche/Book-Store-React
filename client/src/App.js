@@ -23,7 +23,7 @@ const App = () => {
       <Switch>
         <Layout>
           <AdminRoute path="/admin" exact component={Admin} />
-          <UserRoute path="/favori" exact component={Favori} />
+          <UserOrAdminRoute path="/favori" exact component={Favori} />
           <UserOrAdminRoute path="/profil" exact component={Profil} />
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />

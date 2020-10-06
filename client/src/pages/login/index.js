@@ -28,7 +28,7 @@ const LoginOrRegister = ({ history }) => {
     function makeAuth() {
 
         //  we receive data from backends
-        const { token, userId, role } = state.user.userData
+        const { token, userId, role ,imgUrl} = state.user.userData
 
         /* 
         store user details and jwt token in local storage to 
@@ -38,6 +38,7 @@ const LoginOrRegister = ({ history }) => {
         Auth.setToken(token);
         Auth.setUserId(userId);
         Auth.setRole(role)
+         Auth.setImgUrl(imgUrl)
         window.location.reload();
 
 
