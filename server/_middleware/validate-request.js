@@ -22,7 +22,8 @@ function validateRequest(res, req, data, next, schema) {
 
     }
     catch (err) {
-        res.status(400).json({ message: err.message || err.toString() });
+        response(res, 400, { message: err.message || err.toString() })
+
 
     }
 

@@ -8,7 +8,7 @@ router.post('/signup', userValidation.signupValidation, userCtrl.signup);
 
 router.post('/login', userValidation.signupValidation, userCtrl.login);
 router.get('/getuserdata', auth,userCtrl.getUserInfos);
-router.put('/updateuser', auth,userCtrl.updateUser);
+router.put('/updateuser', auth,userValidation.userInfoValidation,userCtrl.updateUser);
 
 
 module.exports = router;

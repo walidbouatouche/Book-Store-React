@@ -16,8 +16,8 @@ module.exports = (req, res, next) => {
             next();
         }
     } catch (err) {
-        res.status(400).json({ message: err.message || err.toString() });
-
+        response(res, 400, 
+            { message: err.message || err.toString() } );
     }
 
 };

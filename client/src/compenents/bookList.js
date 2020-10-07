@@ -23,7 +23,9 @@ const BookList = ({ books, addBookMaker, favori, getBookMakerIdFordelete, delete
 
     }
     return (<>
-
+    {
+        // here bookId mean book for join
+    }
         <Row >
             {books.map((book, index) =>
                 <Col key={book._id || book.bookId._id} lg={3} >
